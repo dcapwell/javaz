@@ -1,4 +1,4 @@
-# Functional Java
+# Javaz
 
 I was forced to go back to java and I got bored, so I created this lib.
 
