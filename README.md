@@ -12,9 +12,9 @@ Fn0
 
 ```java
 Fn0<String> fn1 = () -> "Hello World!";
-System.out.println(fn1.apply());
+fn1.apply();
 // Hello World!
-System.out.println(fn1.apply());
+fn1.apply();
 // Hello World!
 ```
 
@@ -27,7 +27,7 @@ Fn1<Integer, String> fn2 = i -> Integer.toString(i);
 Fn1<String, String> fn3 = fn1.andThen(fn2);
 Fn1<String, String> fn4 = fn2.compose(fn1);
 
-System.out.println(fn3.apply("10") + " == " + fn4.apply("10"));
+fn3.apply("10") + " == " + fn4.apply("10");
 // 2 == 2
 ```
 
@@ -36,12 +36,12 @@ Fn2 (to n)
 ```java
 Fn2<String, String, String> concat = (a, b) -> a + b;
 
-System.out.println(concat.apply("a", "b"));
+concat.apply("a", "b");
 // ab
 Fn1<String, String> fn2 = concat.curried().apply("a"); // partially applied concat with "a"
-System.out.println(fn2.apply("b"));
+fn2.apply("b");
 // ab
-System.out.println(fn2.apply("c"));
+fn2.apply("c");
 // ac
 ```
 
@@ -53,7 +53,7 @@ public static Integer length(String s) {
 }
 ...
 Fn1<String, Integer> fn = Functions.of(FunctionsExample::length);
-System.out.println(fn.apply("foo"));
+fn.apply("foo");
 // 3
 ```
 
@@ -69,9 +69,9 @@ Maybe<Character> first = sized.flatMap(i -> {
     else return Maybe.some(Integer.toString(i).charAt(0));
   });
 
-System.out.println(first.isDefined());
+first.isDefined();
 // false
-System.out.println(Maybe.of("value").map(v -> v.length()).apply());
+Maybe.of("value").map(v -> v.length()).apply();
 // 5
 ```
 
@@ -81,13 +81,13 @@ Try is like maybe, but rather than a none or empty case, there is a `Throwable` 
 
 ```java
 Try<String> data = Try.from(() -> "data");
-if (data.isDefined()) System.out.println(data.asSuccess().get());
+if (data.isDefined()) data.asSuccess().get();
 else data.asFailure().getThrowable().printStackTrace();
 
 // data
 
 Try<String> error = Try.from(() -> {throw new RuntimeException("error");});
-if (error.isDefined()) System.out.println(error.asSuccess().get());
+if (error.isDefined()) error.asSuccess().get();
 else error.asFailure().getThrowable().printStackTrace();
 
 // java.lang.RuntimeException: error
@@ -99,12 +99,12 @@ Java's lists are all mutable.  Guava adds immutable, but they cant be used with 
 
 ```java
 List<Integer> list = List.of(1, 2, 3, 4, 5);
-System.out.println(list.head());
+list.head();
 // 1
-System.out.println(list.tail().head());
+list.tail().head();
 // 2
 
-System.out.println("map then foreach");
+"map then foreach");
 list.map(i -> i * 2).foreach(System.out::println);
 // 2
 // 4
@@ -121,7 +121,7 @@ Wait... What?!??!?!  Yes, you can do type classes in java!... its just not as cl
 
 ```java
 Show<String> show = Shows.shows(a -> a);
-System.out.println(show.shows("Hello World"));
+show.shows("Hello World");
 // Hello World
 ```
 
@@ -149,7 +149,7 @@ public static final class Person {
 
 Person person = new Person("bob", 36);
 Show<Person> personShow = Shows.showsReflect();
-System.out.println(personShow.shows(person));
+personShow.shows(person);
 // Person(name=bob, age=36)
 ```
 
@@ -199,14 +199,14 @@ person.replaceDefault(Shows.showsA()).println();
 ### Eq
 
 ```java
-System.out.println(Eqs.natural().eq(1, 2));
+Eqs.natural().eq(1, 2);
 // false
-System.out.println(Eqs.natural().eq(1, 1));
+Eqs.natural().eq(1, 1);
 // true
 
-System.out.println(Eqs.syntaxNatural(1).notEq(2));
+Eqs.syntaxNatural(1).notEq(2);
 // true
-System.out.println(Eqs.syntaxNatural(1).eq(1));
+Eqs.syntaxNatural(1).eq(1);
 // true
 
 Eqs.<Integer>natural().eq(1, ";_;"); // won't compile
