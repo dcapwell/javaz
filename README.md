@@ -112,3 +112,86 @@ list.map(i -> i * 2).foreach(System.out::println);
 // 8
 // 10
 ```
+
+## Type Classes
+
+Wait... What?!??!?!  Yes, you can do type classes in java!... its just not as clean...  But same idea!
+
+### Show
+
+```java
+Show<String> show = Shows.shows(a -> a);
+System.out.println(show.shows("Hello World"));
+// Hello World
+```
+
+Thats nice, but what about real objects?
+
+```java
+public static final class Person {
+  private final String name;
+  private final int age;
+
+  public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+}
+
+
+Person person = new Person("bob", 36);
+Show<Person> personShow = Shows.showsReflect();
+System.out.println(personShow.shows(person));
+// Person(name=bob, age=36)
+```
+
+"But I want the purdy syntax of scala!"... Fine!  You can have your implicits, just make them explicit!...
+
+```java
+Shows.syntaxReflect(person).println();
+// Person(name=bob, age=36)
+Shows.syntaxA("Hello World!").println();
+// Hello World!
+```
+
+Java is all about inheritance...  so is scala!
+
+```java
+public static final class Person implements ShowSyntax<Person> {
+  private final String name;
+  private final int age;
+
+  public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+}
+
+Person person = new Person("bob", 36);
+person.println();
+```
+
+I want to replace the default show, but keep everything else the same!
+
+```java
+person.println(Shows.showsA());
+// com.github.dcapwell.javaz.examples.ShowsExample$Person@3498ed
+person.replaceDefault(Shows.showsA()).println();
+// com.github.dcapwell.javaz.examples.ShowsExample$Person@3498ed
+```

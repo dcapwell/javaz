@@ -6,7 +6,7 @@ public final class Functions {
   public static <A> Block<A> of(Block<A> fn) {
     return fn;
   }
-  
+
   public static <A> Fn0<A> of(Fn0<A> fn) {
     return fn;
   }
