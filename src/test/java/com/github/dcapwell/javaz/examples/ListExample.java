@@ -13,5 +13,14 @@ public final class ListExample {
 
     System.out.println("map then foreach");
     list.map(i -> i * 2).foreach(System.out::println);
+
+    System.out.println("flatMap then foreach");
+    list.flatMap(i -> List.of(i * 2)).foreach(System.out::println);
+
+    System.out.println("flatMap then reverse foreach");
+    list.flatMap(i -> List.of(i * 2)).reverse().foreach(System.out::println);
+
+    System.out.println("cons on lists");
+    List.of(4, 5, 6).cons(List.of(1, 2, 3)).foreach(System.out::println);
   }
 }

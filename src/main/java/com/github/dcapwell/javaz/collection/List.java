@@ -18,6 +18,8 @@ public abstract class List<A> {
 
   public abstract List<A> cons(A a);
 
+  public abstract List<A> cons(List<A> a);
+
   public abstract boolean isEmpty();
 
   public abstract <B> List<B> map(Fn1<A, B> fn);
@@ -25,6 +27,8 @@ public abstract class List<A> {
   public abstract <B> List<B> flatMap(Fn1<A, List<B>> fn);
 
   public abstract void foreach(Block<A> fn);
+
+  public abstract List<A> reverse();
 
   public static <T> List<T> nil() {
     return (List<T>) NIL;

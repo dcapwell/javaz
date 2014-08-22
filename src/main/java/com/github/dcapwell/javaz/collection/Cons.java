@@ -29,6 +29,32 @@ final class Cons<A> extends List<A> {
   }
 
   @Override
+  public List<A> cons(List<A> as) {
+    if (as.isEmpty()) return this;
+    else {
+      // reverse the as, then iterate over each, cons with the new list
+      List<A> rev = as.reverse();
+      List<A> newList = this;
+      while (! rev.isEmpty()) {
+        newList = newList.cons(rev.head());
+        rev = rev.tail();
+      }
+      return newList;
+    }
+  }
+
+  @Override
+  public List<A> reverse() {
+    List<A> as = this;
+    List<A> result = List.nil();
+    while (! as.isEmpty()) {
+      result = result.cons(as.head());
+      as = as.tail();
+    }
+    return result;
+  }
+
+  @Override
   public boolean isEmpty() {
     return false;
   }
@@ -40,7 +66,7 @@ final class Cons<A> extends List<A> {
 
   @Override
   public <B> List<B> flatMap(Fn1<A, List<B>> fn) {
-    return null;
+    return tail.flatMap(fn).cons(fn.apply(head));
   }
 
   @Override

@@ -22,6 +22,11 @@ final class Nil<A> extends List<A> {
   }
 
   @Override
+  public List<A> cons(List<A> a) {
+    return a;
+  }
+
+  @Override
   public boolean isEmpty() {
     return true;
   }
@@ -39,5 +44,10 @@ final class Nil<A> extends List<A> {
   @Override
   public void foreach(Block<A> fn) {
     // no-op
+  }
+
+  @Override
+  public List<A> reverse() {
+    return this;
   }
 }
