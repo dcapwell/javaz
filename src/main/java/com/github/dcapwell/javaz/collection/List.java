@@ -1,5 +1,7 @@
 package com.github.dcapwell.javaz.collection;
 
+import com.github.dcapwell.javaz.Block;
+import com.github.dcapwell.javaz.Fn1;
 import com.github.dcapwell.javaz.Maybe;
 import com.github.dcapwell.javaz.internal.Preconditions;
 
@@ -17,6 +19,12 @@ public abstract class List<A> {
   public abstract List<A> cons(A a);
 
   public abstract boolean isEmpty();
+
+  public abstract <B> List<B> map(Fn1<A, B> fn);
+
+  public abstract <B> List<B> flatMap(Fn1<A, List<B>> fn);
+
+  public abstract void foreach(Block<A> fn);
 
   public static <T> List<T> nil() {
     return (List<T>) NIL;

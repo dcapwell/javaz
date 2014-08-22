@@ -103,4 +103,12 @@ System.out.println(list.head());
 // 1
 System.out.println(list.tail().head());
 // 2
+
+System.out.println("map then foreach");
+list.map(i -> i * 2).foreach(System.out::println);
+// 2
+// 4
+// 6
+// 8
+// 10
 ```

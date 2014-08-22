@@ -16,6 +16,8 @@ public abstract class Maybe<A> implements Fn0<A> {
 
   public abstract <B> Maybe<B> flatMap(Fn1<A, Maybe<B>> fn);
 
+  public abstract void foreach(Block<A> fn);
+
   public static <A> Maybe<A> some(A a) {
     return new Some<>(Preconditions.checkNotNull(a));
   }
@@ -53,6 +55,11 @@ public abstract class Maybe<A> implements Fn0<A> {
     public <B> Maybe<B> flatMap(Fn1<A, Maybe<B>> fn) {
       return (Maybe<B>) this;
     }
+
+    @Override
+    public void foreach(Block<A> fn) {
+      // no-op
+    }
   }
 
   private static final None<Object> NONE = new None<>();
@@ -82,6 +89,11 @@ public abstract class Maybe<A> implements Fn0<A> {
     @Override
     public <B> Maybe<B> flatMap(Fn1<A, Maybe<B>> fn) {
       return fn.apply(value);
+    }
+
+    @Override
+    public void foreach(Block<A> fn) {
+      fn.apply(value);
     }
   }
 }

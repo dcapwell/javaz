@@ -35,4 +35,9 @@ public final class Success<A> extends Try<A> {
       return new Failure(e);
     }
   }
+
+  @Override
+  public void foreach(Block<A> fn) {
+    fn.apply(value);
+  }
 }

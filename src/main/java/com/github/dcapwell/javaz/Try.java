@@ -15,6 +15,8 @@ public abstract class Try<A> {
 
   public abstract <B> Try<B> flatMap(Fn1<A, Try<B>> fn);
 
+  public abstract void foreach(Block<A> fn);
+
   public static <A> Try<A> from(Fn0<A> fn) {
     try {
       return new Success(fn.apply());

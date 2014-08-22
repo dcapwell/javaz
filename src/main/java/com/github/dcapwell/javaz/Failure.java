@@ -25,4 +25,9 @@ public final class Failure<A> extends Try<A> {
   public <B> Try<B> flatMap(Fn1<A, Try<B>> fn) {
     return (Try<B>) this;
   }
+
+  @Override
+  public void foreach(Block<A> fn) {
+    // no-op
+  }
 }
