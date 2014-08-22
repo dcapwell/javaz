@@ -113,6 +113,32 @@ list.map(i -> i * 2).foreach(System.out::println);
 // 10
 ```
 
+## Memo
+
+Now that we have a common function object, we can do memoization!
+
+```java
+private long slowDouble(long value) {
+  try {
+    Thread.sleep(200);
+  } catch (InterruptedException e) {
+    throw new RuntimeException(e);
+  }
+  return value * 2;
+}
+
+Fn1<Long, Long> fn = Memo.<Long, Long>mutableHashMapMemo().apply(this::slowDouble);
+
+long start, end;
+Long key = Long.valueOf(2);
+for (int i = 0; i < 10; i++) {
+  start = System.nanoTime();
+  long result = fn.apply(key);
+  end = System.nanoTime();
+  System.out.println((end - start) + "ns produced " + result);
+}
+```
+
 ## Type Classes
 
 Wait... What?!??!?!  Yes, you can do type classes in java!... its just not as clean...  But same idea!
