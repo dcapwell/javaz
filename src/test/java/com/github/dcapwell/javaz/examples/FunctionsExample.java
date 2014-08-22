@@ -3,10 +3,11 @@ package com.github.dcapwell.javaz.examples;
 import com.github.dcapwell.javaz.Fn0;
 import com.github.dcapwell.javaz.Fn1;
 import com.github.dcapwell.javaz.Fn2;
+import com.github.dcapwell.javaz.Functions;
 import org.testng.annotations.Test;
 
 @Test
-public final class Functions {
+public final class FunctionsExample {
 
   public void function0() {
     Fn0<String> fn1 = () -> "Hello World!";
@@ -32,5 +33,14 @@ public final class Functions {
     Fn1<String, String> fn2 = concat.curried().apply("a"); // partially applied concat with "a"
     System.out.println(fn2.apply("b"));
     System.out.println(fn2.apply("c"));
+  }
+
+  public static Integer length(String s) {
+    return s.length();
+  }
+
+  public void methodToFn() {
+    Fn1<String, Integer> fn = Functions.of(FunctionsExample::length);
+    System.out.println(fn.apply("foo"));
   }
 }

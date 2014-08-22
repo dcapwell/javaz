@@ -44,3 +44,15 @@ System.out.println(fn2.apply("b"));
 System.out.println(fn2.apply("c"));
 // ac
 ```
+
+Convert methods and static functions to function objects
+
+```java
+public static Integer length(String s) {
+  return s.length();
+}
+...
+Fn1<String, Integer> fn = Functions.of(FunctionsExample::length);
+System.out.println(fn.apply("foo"));
+// 3
+```
