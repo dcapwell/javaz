@@ -195,3 +195,19 @@ person.println(Shows.showsA());
 person.replaceDefault(Shows.showsA()).println();
 // com.github.dcapwell.javaz.examples.ShowsExample$Person@3498ed
 ```
+
+### Eq
+
+```java
+System.out.println(Eqs.natural().eq(1, 2));
+// false
+System.out.println(Eqs.natural().eq(1, 1));
+// true
+
+System.out.println(Eqs.syntaxNatural(1).notEq(2));
+// true
+System.out.println(Eqs.syntaxNatural(1).eq(1));
+// true
+
+Eqs.<Integer>natural().eq(1, ";_;"); // won't compile
+```

@@ -1,5 +1,7 @@
 package com.github.dcapwell.javaz;
 
+import com.github.dcapwell.javaz.syntax.ShowSyntax;
+
 import java.lang.reflect.Field;
 
 public final class Shows {

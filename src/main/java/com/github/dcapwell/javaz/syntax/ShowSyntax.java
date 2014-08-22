@@ -1,6 +1,9 @@
-package com.github.dcapwell.javaz;
+package com.github.dcapwell.javaz.syntax;
 
-public interface ShowSyntax<A> {
+import com.github.dcapwell.javaz.Show;
+import com.github.dcapwell.javaz.Shows;
+
+public interface ShowSyntax<A> extends Syntax<A> {
   public default Show<A> defaultShow() {
     return Shows.showsReflect();
   }
@@ -18,10 +21,6 @@ public interface ShowSyntax<A> {
         return self.self();
       }
     };
-  }
-
-  public default A self() {
-    return (A) this;
   }
 
   public default String shows() {

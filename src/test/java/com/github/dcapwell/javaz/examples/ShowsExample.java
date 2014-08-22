@@ -1,7 +1,7 @@
 package com.github.dcapwell.javaz.examples;
 
 import com.github.dcapwell.javaz.Show;
-import com.github.dcapwell.javaz.ShowSyntax;
+import com.github.dcapwell.javaz.syntax.ShowSyntax;
 import com.github.dcapwell.javaz.Shows;
 import org.testng.annotations.Test;
 
