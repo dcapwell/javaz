@@ -41,6 +41,8 @@
           <maxmem>1024m</maxmem>
         </configuration>
       </plugin>
+      <!-- I depend on default implementations to replace implicits. -->
+      <!--
       <plugin>
         <groupId>net.orfjackal.retrolambda</groupId>
         <artifactId>retrolambda-maven-plugin</artifactId>
@@ -54,6 +56,7 @@
           </execution>
         </executions>
       </plugin>
+      -->
     </plugins>
   </build>
 </project>
