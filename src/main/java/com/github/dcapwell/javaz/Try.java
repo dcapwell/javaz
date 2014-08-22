@@ -1,7 +1,5 @@
 package com.github.dcapwell.javaz;
 
-import com.github.dcapwell.javaz.internal.Preconditions;
-
 public abstract class Try<A> {
   public abstract boolean isDefined();
 
@@ -19,7 +17,7 @@ public abstract class Try<A> {
 
   public static <A> Try<A> from(Fn0<A> fn) {
     try {
-      return new Success(Preconditions.checkNotNull(fn.apply()));
+      return new Success(fn.apply());
     } catch (Throwable e) {
       return new Failure(e);
     }

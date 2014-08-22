@@ -6,7 +6,7 @@ public final class Success<A> extends Try<A> {
   private final A value;
 
   Success(A value) {
-    this.value = value;
+    this.value = Preconditions.checkNotNull(value);
   }
 
   @Override
@@ -21,7 +21,7 @@ public final class Success<A> extends Try<A> {
   @Override
   public <B> Try<B> map(Fn1<A, B> fn) {
     try {
-      return new Success(Preconditions.checkNotNull(fn.apply(value)));
+      return new Success(fn.apply(value));
     } catch (Throwable e) {
       return new Failure(e);
     }
